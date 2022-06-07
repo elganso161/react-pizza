@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+html {
+    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+p {
+    margin: 0;
+    padding: 0;
 }
 
-.App-link {
-  color: #61dafb;
+ul {
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+    list-style: none;
+}
+
+body {
+    background-color: #ffdf8c;
+    font-family: 'Nunito', sans-serif;
+}
+
+.wrapper {
+    width: calc(100vw - 100px);
+    height: 100%;
+    background-color: #fff;
+    margin: 50px auto;
+    border-radius: 10px;
+    max-width: 1400px;
+}
+
+.container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.content {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentPizzaBlock {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }

@@ -1,0 +1,114 @@
+.pizzaBlock {
+  width: 280px;
+  text-align: center;
+  margin-bottom: 65px;
+
+  //   &:not(:nth-of-type(4n)) {
+  //     margin-right: 35px;
+  //   }
+
+  .pizzaBlockImage {
+    width: 260px;
+  }
+
+  .pizzaBlockTitle {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1%;
+    margin-bottom: 20px;
+  }
+
+  .pizzaBlockSelector {
+    display: flex;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 6px;
+
+    ul {
+      display: flex;
+      flex: 1;
+
+      &:first-of-type {
+        margin-bottom: 6px;
+      }
+
+      li {
+        padding: 8px;
+        flex: 1;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        // @include noselect();
+        &.active {
+          background: #ffffff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+          border-radius: 5px;
+          cursor: auto;
+        }
+      }
+    }
+  }
+
+  .pizzaBlockBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .pizzaBlockPrice {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+  }
+
+  .button {
+    user-select: none;
+    display: inline-block;
+    justify-content: space-around;
+    border-radius: 30px;
+    padding: 10px 20px;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
+    border: 1px solid transparent;
+    // @include noselect();
+    border: 1px solid orange;
+
+    &,
+    span {
+      color: orange;
+    }
+
+    i,
+    span,
+    path,
+    svg {
+      transition: all 0.15s ease-in-out;
+    }
+    svg {
+      path {
+        fill: orange;
+      }
+    }
+    &:hover {
+      background-color: orange;
+      span,
+      i {
+        color: #fff;
+      }
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+    &:active {
+      background-color: red;
+    }
+  }
+}

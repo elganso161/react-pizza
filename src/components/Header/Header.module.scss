@@ -1,0 +1,45 @@
+.header {
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+
+  .headerLogo {
+    display: flex;
+
+    img {
+      margin-right: 15px;
+    }
+
+    h1 {
+      color: #181818;
+      font-size: 24px;
+      letter-spacing: 1%;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      color: #7b7b7b;
+    }
+  }
+
+  .button {
+    width: 150px;
+    height: 50px;
+    background: #fe5f1e;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 23px;
+
+    span {
+      color: #fff;
+    }
+
+    .buttonDelimiter {
+      width: 1px;
+      height: 100%;
+      background-color: #ececec;
+    }
+  }
+}
