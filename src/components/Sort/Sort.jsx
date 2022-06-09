@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Sort.module.scss';
 
 const Sort = () => {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(0);
+  const list = ['популярности', 'цене', 'алфавиту'];
+
+  const onClickListItem = (index) => {
+    setSelected(index);
+    setOpen(false);
+  };
   return (
     <>
       <div className={style.sort}>
@@ -18,15 +26,22 @@ const Sort = () => {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span>популярности</span>
+          <span onClick={() => setOpen(!open)}>{list[selected]}</span>
         </div>
-        <div className={style.sort__popup}>
-          <ul>
-            <li className={style.active}>популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
-          </ul>
-        </div>
+        {open && (
+          <div className={style.sort__popup}>
+            <ul>
+              {list.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => onClickListItem(index)}
+                  className={selected === index ? style.active : ''}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   );
