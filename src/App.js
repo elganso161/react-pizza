@@ -3,9 +3,16 @@ import './App.css';
 import Categories from './components/Categories/Categories';
 import Sort from './components/Sort/Sort';
 import PizzaBlock from './components/PizzaBlock/PizzaBlock';
-import pizzas from './assets/pizzas.json';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    fetch('https://62a1b7b3cd2e8da9b0f86c11.mockapi.io/items')
+      .then((res) => res.json())
+      .then((arr) => setItems(arr));
+  }, []);
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -16,7 +23,7 @@ function App() {
             <Sort />
           </div>
           <div className="contentPizzaBlock">
-            {pizzas.map((obj) => {
+            {items.map((obj) => {
               return <PizzaBlock key={obj.id} {...obj} />;
             })}
           </div>
