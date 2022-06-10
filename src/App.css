@@ -59,9 +59,38 @@ body {
 }
 
 .contentPizzaBlock {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.contentPizzaBlock svg {
+    margin: 0 auto;
+}
+
+@media (max-width:1400px) {
+    .contentPizzaBlock {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width:1240px) {
+    .content {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+@media (max-width:1061px) {
+    .contentPizzaBlock {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:768px) {
+    .contentPizzaBlock {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

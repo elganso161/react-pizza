@@ -47,3 +47,14 @@
     }
   }
 }
+
+@media (max-width: 621px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    .button {
+      width: 200px;
+    }
+  }
+}

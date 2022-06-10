@@ -29,3 +29,16 @@
     }
   }
 }
+
+@media (max-width: 930px) {
+  .categories {
+    ul {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
