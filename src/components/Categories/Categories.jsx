@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './Categories.module.scss';
 
-const Categories = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const Categories = ({ categoriId, onClickCategori }) => {
+  //   const [activeIndex, setActiveIndex] = useState(0);
 
   const categories = [
     'Все',
@@ -13,20 +13,20 @@ const Categories = () => {
     'Закрытые',
   ];
 
-  const onClickCategory = (index) => {
-    setActiveIndex(index);
-  };
+  //   const onClickCategory = (index) => {
+  //     setActiveIndex(index);
+  //   };
 
   return (
     <>
       <div className={style.categories}>
         <ul>
-          {categories.map((value, index) => (
+          {categories.map((categoryName, index) => (
             <li
               key={index}
-              onClick={() => onClickCategory(index)}
-              className={activeIndex === index ? style.active : ''}>
-              {value}
+              onClick={() => onClickCategori(index)}
+              className={categoriId === index ? style.active : ''}>
+              {categoryName}
             </li>
           ))}
         </ul>
