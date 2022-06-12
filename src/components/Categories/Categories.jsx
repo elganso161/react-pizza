@@ -2,8 +2,6 @@ import React from 'react';
 import style from './Categories.module.scss';
 
 const Categories = ({ categoriId, onClickCategori }) => {
-  //   const [activeIndex, setActiveIndex] = useState(0);
-
   const categories = [
     'Все',
     'Мясные',
@@ -12,10 +10,6 @@ const Categories = ({ categoriId, onClickCategori }) => {
     'Острые',
     'Закрытые',
   ];
-
-  //   const onClickCategory = (index) => {
-  //     setActiveIndex(index);
-  //   };
 
   return (
     <>
