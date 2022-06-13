@@ -5,8 +5,10 @@ import Sort from '../components/Sort/Sort';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import PizzaBlockSkeleton from '../components/PizzaBlock/PizzaBlockSkeleton';
 import Pagination from '../components/Pagination/Pagination';
+import { useContext } from 'react';
+import { searchContext } from '../App';
 
-const Home = ({ searchValue }) => {
+const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoriId, setCotegoriId] = useState(0);
@@ -15,6 +17,8 @@ const Home = ({ searchValue }) => {
     name: 'популярность(DESC)',
     sortProperty: 'rating',
   });
+
+  const { searchValue } = useContext(searchContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,7 +29,7 @@ const Home = ({ searchValue }) => {
     const search = searchValue ? `search=${searchValue}` : '';
 
     fetch(
-      `https://62a1b7b3cd2e8da9b0f86c11.mockapi.io/items?${category}page=${currentPage}&limit=4&sortBy=${sortBy}&order=${order}&${search}`
+      `https://62a1b7b3cd2e8da9b0f86c11.mockapi.io/items?${category}&page=${currentPage}&limit=4&sortBy=${sortBy}&order=${order}&${search}`
     )
       .then((res) => res.json())
       .then((arr) => {
@@ -58,5 +62,3 @@ const Home = ({ searchValue }) => {
 };
 
 export default Home;
-
-// .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
