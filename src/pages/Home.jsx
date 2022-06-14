@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import Categories from '../components/Categories/Categories';
 import Sort from '../components/Sort/Sort';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
@@ -7,18 +6,27 @@ import PizzaBlockSkeleton from '../components/PizzaBlock/PizzaBlockSkeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { useContext } from 'react';
 import { searchContext } from '../App';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCotegoriId, setSortType } from '../redux/slices/filterSlice';
+import { setItems } from '../redux/slices/pizzasSlice';
 
 const Home = () => {
-  const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
+  const categoriId = useSelector((state) => state.filters.categoriId);
+  const sortType = useSelector((state) => state.filters.sort);
+  const items = useSelector((state) => state.pizzas.items);
+  //   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [categoriId, setCotegoriId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: 'популярность(DESC)',
-    sortProperty: 'rating',
-  });
-
   const { searchValue } = useContext(searchContext);
+
+  const onChangeCategori = (id) => {
+    dispatch(setCotegoriId(id));
+  };
+
+  const onChangeSort = (i) => {
+    dispatch(setSortType(i));
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,19 +41,21 @@ const Home = () => {
     )
       .then((res) => res.json())
       .then((arr) => {
-        setItems(arr);
+        dispatch(setItems(arr));
+        // setItems(arr);
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoriId, sortType, searchValue, currentPage]);
+  }, [categoriId, sortType, searchValue, currentPage, dispatch]);
+
   return (
     <>
       <div className="content">
         <Categories
           categoriId={categoriId}
-          onClickCategori={(id) => setCotegoriId(id)}
+          onClickCategori={onChangeCategori}
         />
-        <Sort sortType={sortType} onClickSort={(i) => setSortType(i)} />
+        <Sort sortType={sortType} onClickSort={onChangeSort} />
       </div>
       <div className="contentPizzaBlock">
         {isLoading

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import style from './Sort.module.scss';
 
+const list = [
+  { name: 'популярности(DESC)', sortProperty: 'rating' },
+  { name: 'популярности(ASC)', sortProperty: '-rating' },
+  { name: 'цене(DESC)', sortProperty: 'price' },
+  { name: 'цене(ASC)', sortProperty: '-price' },
+  { name: 'алфавиту(DESC)', sortProperty: 'title' },
+  { name: 'алфавиту(ASC)', sortProperty: '-title' },
+];
+
 const Sort = ({ sortType, onClickSort }) => {
   const [open, setOpen] = useState(false);
-  //   const [selected, setSelected] = useState(0);
-  const list = [
-    { name: 'популярности(DESC)', sortProperty: 'rating' },
-    { name: 'популярности(ASC)', sortProperty: '-rating' },
-    { name: 'цене(DESC)', sortProperty: 'price' },
-    { name: 'цене(ASC)', sortProperty: '-price' },
-    { name: 'алфавиту(DESC)', sortProperty: 'title' },
-    { name: 'алфавиту(ASC)', sortProperty: '-title' },
-  ];
 
   const onClickListItem = (index) => {
     onClickSort(index);
     setOpen(false);
   };
+
   return (
     <>
       <div className={style.sort}>
