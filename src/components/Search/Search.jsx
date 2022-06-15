@@ -16,10 +16,11 @@ const Search = () => {
     inputRef.current.focus();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = useCallback(
     debounce((str) => {
       setSearchvalue(str);
-    }, 300),
+    }, 500),
     []
   );
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './Sort.module.scss';
 
-const list = [
+export const sortList = [
   { name: 'популярности(DESC)', sortProperty: 'rating' },
   { name: 'популярности(ASC)', sortProperty: '-rating' },
   { name: 'цене(DESC)', sortProperty: 'price' },
@@ -39,7 +39,7 @@ const Sort = ({ sortType, onClickSort }) => {
         {open && (
           <div className={style.sort__popup}>
             <ul>
-              {list.map((obj, index) => (
+              {sortList.map((obj, index) => (
                 <li
                   key={index}
                   onClick={() => onClickListItem(obj)}
