@@ -7,17 +7,22 @@ import Pagination from '../components/Pagination/Pagination';
 import { useContext } from 'react';
 import { searchContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCotegoriId, setSortType } from '../redux/slices/filterSlice';
+import {
+  setCotegoriId,
+  setSortType,
+  setCurrentPage,
+} from '../redux/slices/filterSlice';
 import { setItems } from '../redux/slices/pizzasSlice';
+import axios from 'axios';
 
 const Home = () => {
   const dispatch = useDispatch();
   const categoriId = useSelector((state) => state.filters.categoriId);
   const sortType = useSelector((state) => state.filters.sort);
+  const currentPage = useSelector((state) => state.filters.currentPage);
   const items = useSelector((state) => state.pizzas.items);
   //   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const { searchValue } = useContext(searchContext);
 
   const onChangeCategori = (id) => {
@@ -28,6 +33,10 @@ const Home = () => {
     dispatch(setSortType(i));
   };
 
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
+
   useEffect(() => {
     setIsLoading(true);
 
@@ -36,15 +45,16 @@ const Home = () => {
     const category = categoriId > 0 ? `category=${categoriId}` : '';
     const search = searchValue ? `search=${searchValue}` : '';
 
-    fetch(
-      `https://62a1b7b3cd2e8da9b0f86c11.mockapi.io/items?${category}&page=${currentPage}&limit=4&sortBy=${sortBy}&order=${order}&${search}`
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        dispatch(setItems(arr));
+    axios
+      .get(
+        `https://62a1b7b3cd2e8da9b0f86c11.mockapi.io/items?${category}&page=${currentPage}&limit=4&sortBy=${sortBy}&order=${order}&${search}`
+      )
+      .then((res) => {
+        dispatch(setItems(res.data));
         // setItems(arr);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoriId, sortType, searchValue, currentPage, dispatch]);
 
@@ -66,7 +76,7 @@ const Home = () => {
               return <PizzaBlock key={obj.id} {...obj} />;
             })}
       </div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </>
   );
 };
