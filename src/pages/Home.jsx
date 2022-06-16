@@ -58,7 +58,7 @@ const Home = () => {
       )
       .then((res) => {
         dispatch(setItems(res.data));
-        // setItems(arr);
+        // setItems(res.data);
         setIsLoading(false);
       });
   };

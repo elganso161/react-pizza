@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 import style from './Sort.module.scss';
 
 export const sortList = [
@@ -12,15 +14,30 @@ export const sortList = [
 
 const Sort = ({ sortType, onClickSort }) => {
   const [open, setOpen] = useState(false);
+  const sortRef = useRef();
 
   const onClickListItem = (index) => {
     onClickSort(index);
     setOpen(false);
   };
 
+  useEffect(() => {
+    const handlerClickOutside = (e) => {
+      if (!e.path.includes(sortRef.current)) {
+        setOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handlerClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handlerClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <div className={style.sort}>
+      <div ref={sortRef} className={style.sort}>
         <div className={style.sort__label}>
           <svg
             width="10"
